@@ -1,0 +1,23 @@
+# Guardrail policy for the Meridian Member Servicing target app.
+# WHERE the agent/replay may act, and how risky actions are handled.
+
+allowed_domains:
+  - "127.0.0.1:5055"
+  - "localhost:5055"
+
+allowed_action_types:
+  - navigate
+  - click
+  - fill
+  - select
+  - wait_for
+  - extract
+  - assert_text
+
+# block               -> risky steps always pause for a human, never run unattended
+# require_confirmation -> risky steps run only if the caller passes confirm_risky=true
+# allow_with_flag      -> risky steps run automatically but are flagged loudly in evidence
+risky_action_policy: require_confirmation
+
+max_steps: 40
+max_run_seconds: 180

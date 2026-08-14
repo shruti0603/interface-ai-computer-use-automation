@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# generated at runtime by discover/replay - don't auto-ignore evidence/README.md
+sessions/*.json
+
+# never commit secrets
+.env
+*.key

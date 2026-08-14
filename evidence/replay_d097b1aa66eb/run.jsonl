@@ -1,0 +1,8 @@
+{"ts": "2026-08-14T05:29:15.594401+00:00", "event": "run_started", "kind": "replay", "run_id": "d097b1aa66eb"}
+{"ts": "2026-08-14T05:29:15.594401+00:00", "event": "replay_started", "artifact_id": "meridian.member_lookup", "version": 1, "params": {"member_id": "12345"}}
+{"ts": "2026-08-14T05:29:18.192362+00:00", "event": "authenticated", "login_url": "http://127.0.0.1:5055/login", "username": "operator"}
+{"ts": "2026-08-14T05:29:18.225817+00:00", "event": "step_ok", "step_id": "s0_navigate", "action": "navigate", "attempt": 1}
+{"ts": "2026-08-14T05:29:18.265648+00:00", "event": "step_ok", "step_id": "s1_extract", "action": "extract", "attempt": 1}
+{"ts": "2026-08-14T05:29:18.320459+00:00", "event": "step_ok", "step_id": "s2_extract", "action": "extract", "attempt": 1}
+{"ts": "2026-08-14T05:29:18.341439+00:00", "event": "checkpoint_verified", "strategy": "exact_text"}
+{"ts": "2026-08-14T05:29:18.694230+00:00", "event": "run_finished", "status": "success", "business_outcome_code": null, "failure": null, "duration_ms": 3098}

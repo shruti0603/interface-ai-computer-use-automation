@@ -1,0 +1,23 @@
+<html>
+<head><title>Member Search</title></head>
+<body bgcolor="#ffffff">
+<table width="100%" cellpadding="4" cellspacing="0" border="0" bgcolor="#003366">
+<tr><td><font color="white" size="4"><b>Meridian Credit Union &mdash; Member Servicing</b></font></td>
+<td align="right"><a href="/logout"><font color="white">Sign Out</font></a></td></tr>
+</table>
+<br>
+<table align="center" border="0" cellpadding="6">
+<tr><td colspan="2" align="center"><b>Member Lookup</b></td></tr>
+{% if error %}
+<tr><td colspan="2" align="center"><span style="color:red;font-weight:bold">{{ error }}</span></td></tr>
+{% endif %}
+<form method="POST" action="/search">
+<tr>
+  <td>Member ID</td>
+  <td><input type="text" name="member_id" size="12"></td>
+</tr>
+<tr><td colspan="2" align="center"><input type="submit" value="Look Up Member"></td></tr>
+</form>
+</table>
+</body>
+</html>

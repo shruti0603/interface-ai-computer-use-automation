@@ -1,0 +1,6 @@
+{"ts": "2026-08-14T05:29:34.461910+00:00", "event": "run_started", "kind": "replay", "run_id": "95298ebb4fa4"}
+{"ts": "2026-08-14T05:29:34.462912+00:00", "event": "replay_started", "artifact_id": "meridian.member_lookup", "version": 1, "params": {"member_id": "00000"}}
+{"ts": "2026-08-14T05:29:36.909246+00:00", "event": "authenticated", "login_url": "http://127.0.0.1:5055/login", "username": "operator"}
+{"ts": "2026-08-14T05:29:36.942680+00:00", "event": "step_ok", "step_id": "s0_navigate", "action": "navigate", "attempt": 1}
+{"ts": "2026-08-14T05:29:36.952692+00:00", "event": "business_outcome_detected", "code": "MEMBER_NOT_FOUND"}
+{"ts": "2026-08-14T05:29:37.198817+00:00", "event": "run_finished", "status": "business_outcome", "business_outcome_code": "MEMBER_NOT_FOUND", "failure": null, "duration_ms": 2734}

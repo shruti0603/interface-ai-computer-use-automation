@@ -1,0 +1,24 @@
+<html>
+<head><title>Sub-Account Opened</title></head>
+<body bgcolor="#ffffff">
+<table width="100%" cellpadding="4" cellspacing="0" border="0" bgcolor="#003366">
+<tr><td><font color="white" size="4"><b>Meridian Credit Union &mdash; Member Servicing</b></font></td>
+<td align="right"><a href="/logout"><font color="white">Sign Out</font></a></td></tr>
+</table>
+<br>
+<table align="center" border="1" cellpadding="10">
+<tr><td bgcolor="#e6ffe6">
+<b>Sub-Account Opened Successfully.</b>
+<br><br>
+<table cellpadding="4">
+<tr><td>Member</td><td>{{ member_id }} ({{ m.name }})</td></tr>
+<tr><td>New Account Number</td><td>{{ acct_no }}</td></tr>
+<tr><td>Account Type</td><td>{{ acct_type }}</td></tr>
+<tr><td>Initial Deposit</td><td>${{ "%.2f"|format(deposit) }}</td></tr>
+</table>
+</td></tr>
+</table>
+<br>
+<center><a href="/member/{{ member_id }}">Back to Member</a></center>
+</body>
+</html>

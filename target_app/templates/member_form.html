@@ -1,0 +1,54 @@
+<html>
+<head><title>New Sub-Account</title></head>
+<body bgcolor="#ffffff">
+<table width="100%" cellpadding="4" cellspacing="0" border="0" bgcolor="#003366">
+<tr><td><font color="white" size="4"><b>Meridian Credit Union &mdash; Member Servicing</b></font></td>
+<td align="right"><a href="/logout"><font color="white">Sign Out</font></a></td></tr>
+</table>
+<br>
+
+{% if permission_denied %}
+<table align="center" border="1" cellpadding="10">
+<tr><td bgcolor="#ffe5e5"><b>Access Denied.</b> Member {{ member_id }} is in a restricted account
+range and requires supervisor approval before any sub-account can be opened.
+Please escalate this request to a human operator.</td></tr>
+</table>
+
+{% elif transient_error %}
+<table align="center" border="1" cellpadding="10">
+<tr><td bgcolor="#fff6d5"><b>System Temporarily Unavailable.</b> The core banking service did not
+respond in time. Please retry.
+<br><br>
+<a href="/member/{{ member_id }}/new-subaccount">Retry</a>
+</td></tr>
+</table>
+
+{% else %}
+<table align="center" border="0" cellpadding="6">
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Open New Sub-Account for {{ member_id }} ({{ m.name }})</b></td></tr>
+{% if error %}
+<tr><td colspan="2"><span style="color:red;font-weight:bold">{{ error }}</span></td></tr>
+{% endif %}
+<form method="POST" action="/member/{{ member_id }}/new-subaccount" onsubmit="return confirm('Are you sure you want to open this sub-account?');">
+<tr>
+  <td>Account Type</td>
+  <td>
+    <select name="account_type">
+      <option value="">-- select --</option>
+      <option value="share">Share Savings</option>
+      <option value="money_market">Money Market</option>
+      <option value="certificate">Share Certificate</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>Initial Deposit</td>
+  <td><input type="text" name="initial_deposit" size="10"></td>
+</tr>
+<tr><td colspan="2" align="center"><input type="submit" value="Open Sub-Account"></td></tr>
+</form>
+<tr><td colspan="2" align="center"><a href="/member/{{ member_id }}">Cancel / Back to Member</a></td></tr>
+</table>
+{% endif %}
+</body>
+</html>

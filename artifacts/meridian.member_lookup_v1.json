@@ -1,0 +1,131 @@
+{
+  "artifact_id": "meridian.member_lookup",
+  "name": "Member Lookup",
+  "version": 1,
+  "status": "draft",
+  "description": "Discovered capability for goal: Look up member 12345 and read their savings and checking balance, then confirm you can see the member record",
+  "goal_template": "Look up member 12345 and read their savings and checking balance, then confirm you can see the member record",
+  "target": {
+    "app_id": "meridian",
+    "entry_url": "http://127.0.0.1:5055/member/{{member_id}}",
+    "allowed_domains": [
+      "127.0.0.1:5055",
+      "localhost:5055"
+    ],
+    "tenant_id": null
+  },
+  "input_params": [
+    {
+      "name": "member_id",
+      "type": "string",
+      "required": true,
+      "description": "input parameter 'member_id'",
+      "sensitive": false,
+      "default": null
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "s0_navigate",
+      "action": "navigate",
+      "target": null,
+      "value": null,
+      "url_template": "http://127.0.0.1:5055/member/{{member_id}}",
+      "extract_as": null,
+      "expect_dialog": false,
+      "dialog_action": "accept",
+      "timeout_ms": 8000,
+      "risk_level": "safe",
+      "known_outcomes": [
+        {
+          "code": "MEMBER_NOT_FOUND",
+          "message_template": "No member found matching the given ID.",
+          "matcher": {
+            "strategy": "exact_text",
+            "value": "No member found matching ID",
+            "description": "search error banner text (substring match applied at replay time)"
+          }
+        }
+      ],
+      "recoverable_conditions": [],
+      "notes": "entry point"
+    },
+    {
+      "step_id": "s1_extract",
+      "action": "extract",
+      "target": {
+        "primary": {
+          "strategy": "exact_text",
+          "value": "$4820.55",
+          "description": "readable text '$4820.55'"
+        },
+        "fallbacks": [],
+        "frame_path": []
+      },
+      "value": null,
+      "url_template": null,
+      "extract_as": "savings_balance",
+      "expect_dialog": false,
+      "dialog_action": "accept",
+      "timeout_ms": 8000,
+      "risk_level": "safe",
+      "known_outcomes": [],
+      "recoverable_conditions": [],
+      "notes": "Extracting the savings balance as requested in the goal."
+    },
+    {
+      "step_id": "s2_extract",
+      "action": "extract",
+      "target": {
+        "primary": {
+          "strategy": "exact_text",
+          "value": "$1210.10",
+          "description": "readable text '$1210.10'"
+        },
+        "fallbacks": [],
+        "frame_path": []
+      },
+      "value": null,
+      "url_template": null,
+      "extract_as": "checking_balance",
+      "expect_dialog": false,
+      "dialog_action": "accept",
+      "timeout_ms": 8000,
+      "risk_level": "safe",
+      "known_outcomes": [],
+      "recoverable_conditions": [],
+      "notes": "Extract the checking balance ($1210.10) as required by the goal."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "savings_balance",
+      "type": "string",
+      "description": "extracted at s1_extract",
+      "source_step_id": "s1_extract",
+      "sensitive": false
+    },
+    {
+      "name": "checking_balance",
+      "type": "string",
+      "description": "extracted at s2_extract",
+      "source_step_id": "s2_extract",
+      "sensitive": false
+    }
+  ],
+  "checkpoint": {
+    "description": "Member record 12345 viewed successfully with savings and checking balances extracted.",
+    "target": {
+      "primary": {
+        "strategy": "exact_text",
+        "value": "Member Record: {{member_id}}",
+        "description": "checkpoint text"
+      },
+      "fallbacks": [],
+      "frame_path": []
+    }
+  },
+  "created_at": "2026-08-14T05:27:29.995227+00:00",
+  "created_from_run_id": "a10150758988",
+  "model_used": "gemini:gemini-3.5-flash-lite"
+}

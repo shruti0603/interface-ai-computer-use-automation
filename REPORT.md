@@ -198,7 +198,7 @@ this section) but would implement next:
 
 ## 5. Escalation & handoff
 
-Two situations trigger escalation, both implemented and exercised:
+Two situations trigger escalation, both implemented in the system:
 
 1. **Discovery is stuck** — the model calls the `agent_action` tool with
    `action="stuck"` (it's instructed to do this rather than guess when it
